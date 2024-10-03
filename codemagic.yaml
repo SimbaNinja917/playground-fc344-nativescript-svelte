@@ -3,9 +3,6 @@ workflows:
     name: Debug Android Build Workflow
     max_build_duration: 120
     instance_type: mac_mini_m2
-    environment:
-      variables:
-        NS_ANDROID_PATH: "./platforms/android"
     triggering:
       events:
         - push
@@ -14,13 +11,13 @@ workflows:
         script: npm install
 
       - name: Clean project
-        script: npm run clean
+        script: npm run clean || true
 
       - name: Prepare NativeScript platform for Android
         script: npx tns prepare android
 
       - name: Build Debug APK
-        script: npx tns build android --no-watch --compileSdk 31
+        script: npx tns build android --no-watch
 
       - name: Archive Debug APK
         script: |
