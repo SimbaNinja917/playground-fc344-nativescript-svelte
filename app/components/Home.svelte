@@ -1,16 +1,26 @@
 <page>
     <actionBar title="Home" />
     <gridLayout>
-        <label class="text-xl align-middle text-center text-gray-500" text="{message}" />
+      <button text="Flashcards" class="button" on:tap="{goToFlashcards}" />
     </gridLayout>
 </page>
 
 <script lang="ts">
-    let message: string = "Blank Svelte Native App"
+  import { navigate } from 'svelte-native';  // Correct import
+  import Flashcards from './Flashcards.svelte';  // Import your target component
+
+  function goToFlashcards() {
+    navigate({ page: Flashcards });  // Use `navigate` with the correct configuration
+  }
 </script>
 
 <style>
-    /* .info {
-        font-size: 20;
-    } */
+  .button {
+    font-size: 20px;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+  }
 </style>
