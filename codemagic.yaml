@@ -7,6 +7,9 @@ workflows:
       events:
         - push
     scripts:
+      - name: Install NativeScript CLI
+        script: npm install -g nativescript
+
       - name: Install dependencies
         script: npm install --legacy-peer-deps
 
@@ -14,10 +17,10 @@ workflows:
         script: npm run clean || true
 
       - name: Prepare NativeScript platform for Android
-        script: npx tns prepare android
+        script: tns prepare android
 
       - name: Build Debug APK
-        script: npx tns build android --no-watch
+        script: tns build android --no-watch
 
       - name: Archive Debug APK
         script: |
